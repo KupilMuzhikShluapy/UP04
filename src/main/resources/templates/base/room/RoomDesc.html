@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/DarkTheme.css">
+</head>
+<header th:insert="blocks/Header" :: Header/>
+
+<body class="DarkThemeBody">
+
+<main>
+
+    <a th:href="@{{id}/FavAdd(id=${ItemRoom.getId()})}" th:if="${AddFav}" class="btn btn-dark">Добавить в избранное</a>
+
+    <a th:href="@{{id}/StuffAdd(id=${ItemRoom.getId()})}" class="btn btn-dark">Добавить оборудование</a>
+
+    <form th:action="${ItemRoom.getId()} + '/DeleteRoom'" method="Post" style="margin-top: 10px">
+        <button type="submit" class="btn btn-danger"> Удалить комнату</button>
+    </form>
+
+    <!--/*@thymesVar id="ItemRoom" type="com.example.demo.model.RoomModel"*/-->
+
+    <center>
+        <h1 th:text="${ItemRoom.getTitle()}"/>
+        <h4 th:text="${ItemRoom.getOwner().getTitle()}"/>
+    </center>
+
+    <h3 th:text="${ItemRoom.getDescription()}"/>
+
+    <div style="margin-top: 100px">
+        <h3 th:if="${not #lists.isEmpty(ItemRoom.getStuff())}">Оборудование комнаты:</h3>
+        <div th:each="el : ${ItemRoom.getStuff()}">
+            <div style="margin-top: 25px; padding: 25px" class="whiteShadowLight">
+                <h3 th:text="${el.getTitle()}"/>
+                <h5 th:text="${el.getDescription()}"/>
+
+                <div style="margin-top: 50px">
+                    <form th:action="${el.getId()} + '/DeleteStuff'" method="Post" style="margin-top: 10px">
+                        <button type="submit" class="btn btn-outline-danger"> Удалить оборудование</button>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</main>
+
+</body>
+
+<footer th:insert="blocks/Footer" :: Footer/>
+</html>

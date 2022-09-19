@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="/css/DarkTheme.css">
+</head>
+<header th:insert="blocks/Header" :: Header/>
+
+<body class="DarkThemeBody">
+
+<main>
+
+  <a th:href="@{{id}/RoomAdd(id=${ItemBase.getId()})}" class="btn btn-dark">Добавить комнату</a>
+  <a th:href="@{{id}/UslugaAdd(id=${ItemBase.getId()})}" class="btn btn-dark">Добавить услугу</a>
+  <a th:href="@{{id}/ItemShopOfferAdd(id=${ItemBase.getId()})}" class="btn btn-dark">Добавить товар на базу</a>
+
+  <form th:action="${ItemBase.getId()} + '/DeleteBase'" method="Post" style="margin-top: 10px">
+    <button type="submit" class="btn btn-danger"> Удалить базу</button>
+  </form>
+
+  <!--/*@thymesVar id="ItemBase" type="com.example.demo.model.BaseModel"*/-->
+
+  <center>
+    <h1 th:text="${ItemBase.getTitle()}"/>
+    <h4 th:text="${ItemBase.GetStreetAndHome()}"/>
+  </center>
+
+  <h3 th:text="${ItemBase.getDescription()}"/>
+
+  <div style="margin-top: 100px">
+    <h3 th:if="${not #lists.isEmpty(ItemBase.getRooms())}">Комнаты базы:</h3>
+    <div th:each="el : ${ItemBase.getRooms()}">
+      <div style="margin-top: 25px; padding: 25px" class="whiteShadowLight">
+        <h3 th:text="${el.getTitle()}"/>
+        <h5 th:text="${el.getDescription()}"/>
+
+        <div style="margin-top: 50px">
+          <form th:action="${el.getId()} + '/DeleteRoom'" method="Post" style="margin-top: 10px">
+            <a th:href="@{/room/{id}(id=${el.id})}" class="btn btn-outline-primary">Подробнее</a>
+
+            <button type="submit" class="btn btn-outline-danger"> Удалить комнату</button>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 100px">
+    <h3 th:if="${not #lists.isEmpty(ItemBase.getUslugi())}">Доп услуги базы:</h3>
+    <div th:each="el : ${ItemBase.getUslugi()}">
+      <div style="margin-top: 25px; padding: 25px" class="whiteShadowLight">
+        <h3 th:text="${el.getTitle()}"/>
+        <h3 th:text="${el.getPrice()}"/>
+        <h5 th:text="${el.getDescription()}"/>
+
+        <div style="margin-top: 50px">
+          <form th:action="${el.getId()} + '/DeleteUsluga'" method="Post" style="margin-top: 10px">
+            <button type="submit" class="btn btn-outline-danger"> Удалить услугу</button>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 100px">
+    <h3 th:if="${not #lists.isEmpty(ItemBase.getPersons())}">Персонал базы:</h3>
+    <div th:each="el : ${ItemBase.getPersons()}">
+      <div style="margin-top: 25px; padding: 25px" class="whiteShadowLight">
+        <h3 th:text="${el.getFullName()}"/>
+        <h5 th:text="${el.getDolzh()}"/>
+
+        <div class="row">
+          <div class="col">
+            <h6 th:text="${el.getPhone()}"></h6>
+          </div>
+
+          <div class="col">
+            <h6 th:text="${el.getEmail()}"></h6>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 100px">
+
+    <h3 th:if="${not #lists.isEmpty(ItemBase.getShopItemOffers())}">Товары на базе:</h3>
+
+    <div th:each="el : ${ItemBase.getShopItemOffers()}">
+      <div style="margin-top: 25px; padding: 25px" class="whiteShadowLight">
+        <h3 th:text="${el.getShopItemOffer().getTitle()}"/>
+        <h5 th:text="${el.getShopItemOffer().getDescription()}"/>
+        <h6 th:text="${el.getShopItemOffer().getPrice()}"></h6>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+</body>
+
+<footer th:insert="blocks/Footer" :: Footer/>
+</html>

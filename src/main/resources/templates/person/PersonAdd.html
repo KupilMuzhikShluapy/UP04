@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="/css/DarkTheme.css">
+</head>
+<header th:insert="blocks/Header" :: Header/>
+
+<body class="DarkThemeBody">
+
+<main>
+  <div>
+    <form method="post" th:action="${'PersonAdd'}" th:object="${Person}">
+
+      <h2>Должность сотрудника:</h2>
+      <div class="row" style="margin-top: 25px">
+        <div class="col-3">
+          <div class="inputTitleDiv whiteShadow rounded">
+            <input type="text" name="dolzh" th:field="*{dolzh}" class="inputTitle form-control" placeholder="Название">
+            <a style="color:red" th:if="${#fields.hasErrors('dolzh')}" th:errors="*{dolzh}"/>
+
+            <div class="d-grid gap-2">
+              <input type="submit" name="submit" class="btn btn-primary AddButton" value="Добавить">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-9">
+          <div class="row" style="margin-top: 25px">
+            <div class="col">
+              <h4>Имя:</h4>
+              <input type="text" name="firstName" th:field="*{firstName}" class="form-control inputAtr" placeholder="Имя">
+              <a style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"/>
+            </div>
+
+            <div class="col">
+              <h4>Фамилия:</h4>
+              <input type="text" name="secondName" th:field="*{secondName}" class="form-control inputAtr" placeholder="Фамилия">
+              <a style="color:red" th:if="${#fields.hasErrors('secondName')}" th:errors="*{secondName}"/>
+            </div>
+
+            <div class="col">
+              <h4>Отчество:</h4>
+              <input type="text" name="otch" th:field="*{otch}" class="form-control inputAtr" placeholder="Отчество">
+              <a style="color:red" th:if="${#fields.hasErrors('otch')}" th:errors="*{otch}"/>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top: 25px">
+            <div class="col">
+              <h4>Телефон:</h4>
+              <input type="text" name="phone" th:field="*{phone}" class="form-control inputAtr" placeholder="Номер Телефона">
+              <a style="color:red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"/>
+            </div>
+
+            <div class="col">
+              <h4>Электронная почта:</h4>
+              <input type="text" name="email" th:field="*{email}" class="form-control inputAtr" placeholder="Электронная почта">
+              <a style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"/>
+            </div>
+          </div>
+
+          <div style="margin-top: 25px">
+            <h4>База на которой работает сотрудник:</h4>
+              <select class="form-select" name="baseName">
+                <div th:each="element : ${AllBase}">
+                  <option th:text="${element.getTitle()}"></option>
+                </div>
+              </select>
+          </div>
+
+        </div>
+      </div>
+
+    </form>
+  </div>
+</main>
+
+</body>
+
+<footer th:insert="blocks/Footer" :: Footer/>
+</html>

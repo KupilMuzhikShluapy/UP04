@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/DarkTheme.css">
+</head>
+<header th:insert="blocks/Header" :: Header/>
+
+<body class="DarkThemeBody">
+
+<main>
+    <div>
+        <form method="post" th:action="${'DescAdd'}" th:object="${ItemDesc}">
+
+            <h2>Название пункта:</h2>
+            <div class="row" style="margin-top: 25px">
+                <div class="col-3">
+                    <div class="inputTitleDiv whiteShadow rounded">
+                        <input type="text" name="title" th:field="*{title}" class="inputTitle form-control" placeholder="Название">
+                        <a style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"/>
+
+                        <div class="d-grid gap-2">
+                            <input type="submit" name="submit" class="btn btn-primary AddButton" value="Добавить">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-9">
+                    <h4>Описание пункта:</h4>
+                    <input type="text" name="description" th:field="*{description}" class="inputAtr form-control" placeholder="Ваше описание">
+                    <a style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"/>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+</main>
+
+</body>
+
+<footer th:insert="blocks/Footer" :: Footer/>
+</html>

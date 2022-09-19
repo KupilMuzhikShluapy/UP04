@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="/css/DarkTheme.css">
+</head>
+<header th:insert="blocks/Header" :: Header/>
+
+<body class="DarkThemeBody">
+
+<main>
+
+  <form method="get" action="PersonAdd">
+    <button type="submit" class="btn btn-dark">Добавить сотрудника</button>
+  </form>
+
+  <center>
+    <h1>
+      Список всех сотрудников
+    </h1>
+
+    <div>
+      <div th:each="el : ${AllPerson}">
+        <div>
+
+
+          <div class="card bg-dark" style="margin-top: 25px">
+            <div class="card-header">
+              <h2 th:text="${el.getFullName()}"></h2>
+              <h6 th:text="${el.getOwnerBasePerson().getTitle()}"></h6>
+              <h6 th:text="${el.getDolzh()}"></h6>
+
+            </div>
+            <div class="card-body">
+              <div>
+                <div class="row">
+                  <div class="col">
+                    <h4 th:text="${el.getEmail()}"></h4>
+                  </div>
+
+                  <div class="col">
+                    <h4 th:text="${el.getPhone()}"></h4>
+
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 50px">
+                <form th:action="${el.getId()} + '/DeletePerson'" method="Post" style="margin-top: 10px">
+                  <button type="submit" class="btn btn-outline-danger"> Удалить сотрудника</button>
+                </form>
+
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+  </center>
+</main>
+
+</body>
+
+<footer th:insert="blocks/Footer" :: Footer/>
+</html>

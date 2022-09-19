@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/DarkTheme.css">
+</head>
+<header th:insert="blocks/Header" :: Header/>
+
+<body class="DarkThemeBody">
+
+<main>
+    <form th:action="${Account.getId()} + '/DeleteAcc'" method="Post" style="margin-top: 10px">
+        <button type="submit" class="btn btn-danger"> Удалить аккаунт</button>
+    </form>
+
+    <h1 th:text="${Account.getUser().getUsername()}" style="margin-top: 25px"></h1>
+
+    <div style="margin-top: 100px">
+        <h3>Избранные комнаты:</h3>
+        <div th:each="el : ${Account.getFavRooms()}">
+            <div style="margin-top: 25px; padding: 25px" class="whiteShadowLight">
+                <h3 th:text="${el.getRoom().getTitle()}"/>
+                <h5 th:text="${el.getRoom().getDescription()}"/>
+                <h6 th:text="'В составе базы: ' + ${el.getRoom().getOwner().getTitle()}"></h6>
+
+                <div style="margin-top: 50px">
+                    <a th:href="@{/room/{id}(id=${el.getRoom().getId()})}" class="btn btn-outline-primary">Подробнее</a>
+                    <form th:action="${el.getId()} + '/DeleteFav'" method="Post" style="margin-top: 10px">
+                        <button type="submit" class="btn btn-outline-danger"> Удалить из избранного</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</main>
+
+</body>
+
+<footer th:insert="blocks/Footer" :: Footer/>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="/css/DarkTheme.css">
+</head>
+<header th:insert="blocks/Header" :: Header/>
+
+<body class="DarkThemeBody">
+
+<main>
+  <div>
+    <form method="post" th:action="${'ItemShopOfferAdd'}" th:object="${Offer}">
+
+      <h2>Выберите товар:</h2>
+      <div class="row" style="margin-top: 25px">
+        <div class="col-3">
+          <div class="inputTitleDiv whiteShadow rounded">
+            <select class="form-select" name="shopItemId">
+              <div th:each="element : ${AllItemShop}">
+                <option th:text="${element.getTitle()}" th:value="${element.getId()}"></option>
+              </div>
+            </select>
+
+            <div class="d-grid gap-2">
+              <input type="submit" name="submit" class="btn btn-primary AddButton" value="Добавить">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-9">
+          <h4>Количество товара:</h4>
+          <input type="number" name="count" th:field="*{count}" class="inputAtr form-control" placeholder="Количество товара">
+          <a style="color:red" th:if="${#fields.hasErrors('count')}">Введите количество товара</a>
+
+        </div>
+      </div>
+
+    </form>
+  </div>
+</main>
+
+</body>
+
+<footer th:insert="blocks/Footer" :: Footer/>
+</html>

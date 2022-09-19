@@ -1,0 +1,57 @@
+div{
+    color: white;
+}
+
+.DarkThemeBody{
+    background: black;
+    background: rgb(0,0,0);
+    background: linear-gradient(130deg, rgba(0,0,0,1) 0%, rgba(0,0,10,1) 50%, rgba(20,0,0,1) 100%);
+
+}
+
+main{
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+}
+
+h1, h2, h3, h4, h5, h6{
+    color: white;
+}
+
+body{
+    background: black;
+
+}
+
+.AddButton{
+    font-size:36px;
+    margin-top:20px;
+}
+
+.inputTitle{
+    font-size:28px;
+    text-align:center;
+}
+
+.inputAtr{
+    font-size:24px;
+    text-align:left;
+}
+
+.inputTitleDiv{
+    padding: 20px;
+}
+
+.whiteShadow{
+    box-shadow: 0 0 15px rgba(255,255,255,0.10);
+}
+
+.whiteShadowLight{
+    background: black;
+    box-shadow: 0 0 12px rgba(255,255,255,0.1);
+}
+
+.redShadow{
+    box-shadow: 0 0 5px 2px Red;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/css/DarkTheme.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous">
+
+    <header class="p-3 text-bg-dark">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="/" class="nav-link px-2 text-white">Главная</a></li>
+                    <li><a href="/base/" class="nav-link px-2 text-white">Базы</a></li>
+                    <li><a href="/person/" class="nav-link px-2 text-white">Все сотрудники баз</a></li>
+                    <li><a href="/shop/" class="nav-link px-2 text-white">Наши товары</a></li>
+                </ul>
+
+
+
+                <div class="text-end">
+
+                    <div class="Container">
+                        <div class="row">
+                            <div class="col">
+                                <a href="/account/" class="btn btn-outline-primary">Аккаунт</a>
+                            </div>
+                            <div class="col">
+                                <form th:action="@{/login}" method="post">
+                                    <input type="submit" value="Войти" class="btn btn-outline-light"/>
+                                </form>
+                            </div>
+                            <div class="col">
+                                <form th:action="@{/logout}" method="post">
+                                    <input type="submit" value="Выйти" class="btn btn-danger"/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </header>
+</html>

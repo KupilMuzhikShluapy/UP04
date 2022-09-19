@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/DarkTheme.css">
+</head>
+<header th:insert="blocks/Header" :: Header/>
+
+<body class="DarkThemeBody">
+
+<main>
+    <div>
+        <form method="post" th:action="${'BaseAdd'}" th:object="${Base}">
+
+            <h2>Название базы:</h2>
+                <div class="row" style="margin-top: 25px">
+                    <div class="col-3">
+                        <div class="inputTitleDiv whiteShadow rounded">
+                            <input type="text" name="title" th:field="*{Title}" class="inputTitle form-control" placeholder="Название">
+                            <a style="color:red" th:if="${#fields.hasErrors('Title')}" th:errors="*{Title}"/>
+
+                            <div class="d-grid gap-2">
+                                <input type="submit" name="submit" class="btn btn-primary AddButton" value="Добавить">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-9">
+                        <h4>Описание базы:</h4>
+                        <input type="text" name="Description" th:field="*{Description}" class="inputAtr form-control" placeholder="Ваше описание">
+                        <a style="color:red" th:if="${#fields.hasErrors('Description')}" th:errors="*{Description}"/>
+
+                        <div class="row" style="margin-top: 25px">
+                            <div class="col">
+                                <h4>Улица базы:</h4>
+                                <input type="text" name="Street" th:field="*{Street}" class="form-control inputAtr" placeholder="Улица">
+                                <a style="color:red" th:if="${#fields.hasErrors('Street')}" th:errors="*{Street}"/>
+                            </div>
+
+                            <div class="col">
+                                <h4>Дом базы:</h4>
+                                <input type="text" name="House" th:field="*{House}" class="form-control inputAtr" placeholder="Дом">
+                                <a style="color:red" th:if="${#fields.hasErrors('House')}" th:errors="*{House}"/>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+        </form>
+    </div>
+</main>
+
+</body>
+
+<footer th:insert="blocks/Footer" :: Footer/>
+</html>
